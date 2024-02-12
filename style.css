@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#startBtn {
+    padding: 10px 5px;
+    font-size: 20px;
+
+}
+
+.gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-width: 415px;
+
+    flex: 0;
+
+    background: rgb(255, 255, 255) !important;
+
+}
+
+.gridContainer>div {
+    padding: 0;
+    margin: 0px;
+
+}
