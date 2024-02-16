@@ -1,9 +1,9 @@
 const mainContainer = document.querySelector(".mainContainer");
 const startButton = document.querySelector("#startBtn");
 const countInput = document.querySelector("#sqrCount");
+const infoSpan = document.querySelector("#info");
 
 startButton.addEventListener("click", sketcherStart);
-
 
 function sketcherStart() {
     deleteGrid();
@@ -12,8 +12,10 @@ function sketcherStart() {
         createGrid(sqrCount);
         startButton.textContent = "Reset";
         countInput.style.background = "green";
+        infoSpan.textContent = "";
     } else {
         countInput.style.background = "red";
+        infoSpan.innerHTML = "The <strong>limit</strong> of grid is <strong>between 16 and 200</strong>! Please, input correct number!";
     }
 }
 
@@ -35,8 +37,6 @@ function createGrid(sqrCount) {
     const div = document.createElement("div");
     div.style.cssText += `width:${divWidth}px; height:${divWidth}px`;
 
-
-
     for (i = 0; i < sqrCount / 2; i++) {
         for (j = 0; j < sqrCount; j++) {
             let divClone = div.cloneNode();
@@ -51,13 +51,16 @@ function changeDivColor(event) {
     if (event.target.style.background == "") {
         event.target.style.background = `rgba(${getRandomColorRgb()})`;
     } else {
-        let rgba = event.target.style.background;
-        let alpaNum = Number.parseFloat(rgba.slice(rgba.length - 4, rgba.length - 1));
-        if (alpaNum < 1) {
-            alpaNum += 0.1;
-            let newColor = rgba.slice(0, rgba.length - 4) + `${alpaNum})`;
-            event.target.style.background = newColor;
-        }
+        increaseAlpha(event);
+    }
+}
+function increaseAlpha(event) {
+    let rgba = event.target.style.background;
+    let alpaNum = Number.parseFloat(rgba.slice(rgba.length - 4, rgba.length - 1));
+    if (alpaNum < 1) {
+        alpaNum += 0.1;
+        let newColor = rgba.slice(0, rgba.length - 4) + `${alpaNum})`;
+        event.target.style.background = newColor;
     }
 }
 
