@@ -48,6 +48,7 @@ function createGrid(sqrCount) {
 }
 
 function changeDivColor(event) {
+    if (event.ctrlKey !== true) return
     if (event.target.style.background == "") {
         event.target.style.background = `rgba(${getRandomColorRgb()})`;
     } else {
@@ -56,10 +57,10 @@ function changeDivColor(event) {
 }
 function increaseAlpha(event) {
     let rgba = event.target.style.background;
-    let alpaNum = Number.parseFloat(rgba.slice(rgba.length - 4, rgba.length - 1));
-    if (alpaNum < 1) {
-        alpaNum += 0.1;
-        let newColor = rgba.slice(0, rgba.length - 4) + `${alpaNum})`;
+    let alphaNum = Number.parseFloat(rgba.slice(rgba.length - 4, rgba.length - 1));
+    if (alphaNum < 1) {
+        alphaNum += 0.1;
+        let newColor = rgba.slice(0, rgba.length - 4) + `${alphaNum})`;
         event.target.style.background = newColor;
     }
 }
